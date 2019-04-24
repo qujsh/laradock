@@ -252,3 +252,15 @@ services:
       networks:
         - frontend
         - backend
+
+
+### Docker-in-Docker ################################################
+    docker-in-docker:
+      image: docker:dind
+      privileged: true
+      volumes:
+      - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
+      expose:
+      - 2375
+      networks:
+      - backend
