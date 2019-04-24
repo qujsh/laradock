@@ -9,6 +9,10 @@ FROM php:${PHP_VERSION}-alpine
 
 LABEL maintainer="Mahmoud Zalt <mahmoud@zalt.me>"
 
+RUN sed -i "s/archive.ubuntu./mirrors.aliyun./g" /etc/apt/sources.list && \
+    sed -i "s/deb.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list && \
+    sed -i "s/security.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list
+
 RUN apk --update add wget \
   curl \
   git \
