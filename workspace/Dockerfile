@@ -37,6 +37,10 @@ ENV PUID ${PUID}
 ARG PGID=1000
 ENV PGID ${PGID}
 
+RUN sed -i "s/archive.ubuntu./mirrors.aliyun./g" /etc/apt/sources.list && \
+    sed -i "s/deb.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list && \
+    sed -i "s/security.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list
+
 # always run apt update when start and after add new source list, then clean up at end.
 RUN set -xe; \
     apt-get update -yqq && \

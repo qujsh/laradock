@@ -36,7 +36,8 @@ if [ -n "${PHP_VERSION}" ]; then
 fi
 
 #### Generate the Laradock Documentation site using Hugo
-if [ -n "${HUGO_VERSION}" ]; then
+#if [ -n "${HUGO_VERSION}" ]; then
+if [ false ]; then
     HUGO_PACKAGE=hugo_${HUGO_VERSION}_Linux-64bit
     HUGO_BIN=hugo_${HUGO_VERSION}_linux_amd64
 
