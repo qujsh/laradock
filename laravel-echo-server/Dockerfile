@@ -7,9 +7,10 @@ WORKDIR /usr/src/app
 # Install app dependencies
 COPY package.json /usr/src/app/
 
-RUN sed -i "s/archive.ubuntu./mirrors.aliyun./g" /etc/apt/sources.list && \
-    sed -i "s/deb.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list && \
-    sed -i "s/security.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list
+# sed: /etc/apt/sources.list: No such file or directory， get a error
+#RUN sed -i "s/archive.ubuntu./mirrors.aliyun./g" /etc/apt/sources.list && \
+#    sed -i "s/deb.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list && \
+#    sed -i "s/security.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list
 
 RUN apk add --update \
     python \
