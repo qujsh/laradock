@@ -12,9 +12,10 @@ RUN if [ ${CHANGE_SOURCE} = true ]; then \
     sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/' /etc/apk/repositories \
 ;fi
 
-RUN sed -i "s/archive.ubuntu./mirrors.aliyun./g" /etc/apt/sources.list && \
-    sed -i "s/deb.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list && \
-    sed -i "s/security.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list
+# sed: /etc/apt/sources.list: No such file or directory， get a error
+#RUN sed -i "s/archive.ubuntu./mirrors.aliyun./g" /etc/apt/sources.list && \
+#    sed -i "s/deb.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list && \
+#    sed -i "s/security.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list
 
 RUN apk update \
     && apk upgrade \
