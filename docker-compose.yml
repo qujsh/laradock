@@ -241,8 +241,9 @@ services:
 
 ### Laravel Echo Server #######################################
     laravel-echo-server:
-      build:
-        context: ./laravel-echo-server
+#      build:
+#        context: ./laravel-echo-server
+      image: qujsh/laradock-laravel-echo-server
       volumes:
         - ./laravel-echo-server/laravel-echo-server.json:/app/laravel-echo-server.json:ro
       ports:
