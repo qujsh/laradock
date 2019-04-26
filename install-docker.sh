@@ -28,11 +28,11 @@ fi
 
 for name in $NAMES
 do
-	if [ ! -f $DOWNLOAD/$name  ]; then
+	if [ ! -f $DOWNLOAD/$name.rpm  ]; then
 		NAME=$(echo $name | tr 'a-z' 'A-Z')
 		eval tmp=$(echo \$$NAME)
 
-		cd $DOWNLOAD && wget -O $name $tmp
+		cd $DOWNLOAD && wget -O $name.rpm $tmp      # suffix need to be .rpm, or yum can't be installed
 
 		if [ $? != 0 ]; then
 			echo "download $name package failed"
@@ -41,16 +41,17 @@ do
 	fi
 done
 
-if [ ! -f $DOCKER_PATH ]; then
+# execute this file and yum again，for some extra docker wrong
+#if [ ! -f $DOCKER_PATH ]; then
 	for name in $NAMES
 	do
-        	if [ $name == "docker_compose"  ]; then
-			mv $DOWNLOAD/$name $DOCKER_COMPOSE_PATH
+        	if [ $name == "docker_compose.rpm"  ]; then         # .rpm is common to all
+			mv $DOWNLOAD/$name.rpm $DOCKER_COMPOSE_PATH
 			chmod +x $DOCKER_COMPOSE_PATH
                 	break
 	        fi
 
-        	yum install $DOWNLOAD/$name
+        	yum install -y $DOWNLOAD/$name.rpm
 	done
 
 	if [ $? != 0 ]; then
@@ -58,7 +59,7 @@ if [ ! -f $DOCKER_PATH ]; then
 	fi
 
 	systemctl enable docker
-fi
+#fi
 
 mkdir -p /etc/docker && \
 tee /etc/docker/daemon.json <<-'EOF'
