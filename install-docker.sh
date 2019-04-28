@@ -1,8 +1,8 @@
 #!/bin/sh
 #description: install docker, create user
 
-USERNAME="qujsh"
-PASSWORD=`echo ${USERNAME} | md5sum | cut -b 4-10 | tee ~/pass`
+USERNAME="qujsh"                                                                                                            #you want to create who
+PASSWORD=`echo ${USERNAME} | md5sum | cut -b 4-10 | tee ~/pass`                                                             #get the md5 value as random password
 
 if [ $USER != "root" ]; then
 	echo "please use root account"
