@@ -49,7 +49,7 @@ services:
       image: qujsh/laradock-workspace
       volumes:
         - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}${APP_CODE_CONTAINER_FLAG}
-        - ./crontab:/etc/cron.d
+        - ./workspace/crontab:/etc/cron.d
       extra_hosts:
         - "dockerhost:${DOCKER_HOST_IP}"
       ports:
