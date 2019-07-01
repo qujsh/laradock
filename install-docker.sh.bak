@@ -2,7 +2,7 @@
 #description: install docker, create user
 
 USERNAME="qujsh"                                                                                                            #you want to create who
-PASSWORD=`echo ${USERNAME} | md5sum | cut -b 4-10 | tee ~/pass`                                                             #get the md5 value as random password
+PASSWORD=`head -c 32 /dev/urandom | base64 | cut -c 1-20 | tee ~/pass`                                                             #get the md5 value as random password
 
 if [ $USER != "root" ]; then
 	echo "please use root account"
@@ -89,7 +89,8 @@ systemctl restart docker
 
 #create user
 useradd $USERNAME && \
-        echo $PASSEORD | passwd --stdin $USERNAME
+        echo $PASSWORD | passwd --stdin $USERNAME && \
+        gpasswd -a ${USERNAME} wheel
 
 if [ $? != 0 ]; then
         echo 'add user failed'
