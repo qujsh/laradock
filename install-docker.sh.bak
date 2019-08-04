@@ -18,7 +18,7 @@ DOCKER_COMPOSE='https://github.com/docker/compose/releases/download/1.24.0/docke
 DOWNLOAD='/root/download'                                                                                                   #download place
 DOCKER_PATH='/usr/bin/docker'
 DOCKER_COMPOSE_PATH='/usr/local/bin/docker-compose'
-REGISTRY_MIRROR='https://registry.docker-cn.com'                                                                            #you need replace your own Mirror accelerator
+REGISTRY_MIRROR='https://docker.mirrors.ustc.edu.cn'                                                                            #you need replace your own Mirror accelerator
 
 if [ ! -d $DOWNLOAD ]; then
 	mkdir $DOWNLOAD
